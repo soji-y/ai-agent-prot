@@ -24,7 +24,7 @@ GPU：Geforce RTX4080 (GPUメモリ16GB以上)
 - Python 3.12.8
 
 ## 動作画面
-!["フォーム画像"](https://github.com/soji-y/ai-agent-prot/tree/main/advanced_ai_agent/advanced_ai_agent.png)
+!["フォーム画像"](https://github.com/soji-y/ai-agent-prot/blob/main/advanced_ai_agent/advanced_ai_agent.png)
 
 ## 使用方法
 #### 1. 本リポジトリをクローン
