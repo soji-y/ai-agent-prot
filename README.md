@@ -1,7 +1,16 @@
-## モデル
-### ■車判別モデル
-https://drive.google.com/drive/folders/1U-O0aMDx8fvX3Sgih1Qyqp4MVYoM8WFH
-- **Idefics2-8B-Instruct_Car.zip**
+## 説明
+- AIエージェントのローカル実装テストアプリ
+
+## 機能
+- シンプルなローカルLLM実行スクリプト
+- Ollamaを使用したローカルLLM実行スクリプト
+- AIエージェントをローカルLLMを使用して実装したスクリプト
+- ローカルLLMを使用した高度なAIエージェント
+  - 会話
+  - 画像を参照した会話
+  - Webサーチによる自律的な調査とそれに基づく回答
+  - コードインタープリター機能を自律的に使用した回答
+  - オセロのプレイ
 
 ## 推奨環境
 GPU：Geforce RTX4080 (GPUメモリ16GB以上)
