@@ -48,6 +48,12 @@ pip3 install -r requirements.txt
 ```
 playwright install
 ```
+(5) Ollamaの自動Tool判定機能をOFFにして再起動【重要】
+```
+OLLAMA_NO_TOOLS=1
+```
+上記を実行してOllamaを再起動する。
+※これを行わないとAIエージェント用に出力したJson形式文字列がOllamaに自動パースされてエージェントは動作しません。
 
 #### 3. それぞれのスクリプトの実行\
 (1) シンプルなローカルLLM
