@@ -20,7 +20,7 @@ GPU：Geforce RTX4080 (GPUメモリ16GB以上)
 - RAM 64 GB
 - Geforce RTX4090
 - Windows11
-- CUDA 12.1
+- CUDA 12.8
 - Python 3.12.8
 
 ## 動作画面
@@ -32,7 +32,7 @@ GPU：Geforce RTX4080 (GPUメモリ16GB以上)
 (1) venvやanaconda等で仮想環境を作成\
 ```
 # anaconda
-conda create -n ai_agent python=3.11
+conda create -n ai_agent python=3.12.8
 ```
 (2) pytorch等のインストール (CUDA環境に合わせたライブラリ)
 https://pytorch.org/
