@@ -26,6 +26,9 @@ GPU：Geforce RTX4080 (GPUメモリ16GB以上)
 ## 動作画面
 !["フォーム画像"](https://github.com/soji-y/ai-agent-prot/blob/main/advanced_ai_agent/advanced_ai_agent.png)
 
+## 事前インストール
+Ollama: https://ollama.com/download/windows
+
 ## 使用方法
 #### 1. 本リポジトリをクローン
 #### 2. 必要なライブラリをインストール
@@ -55,7 +58,7 @@ OLLAMA_NO_TOOLS=1
 上記を実行してOllamaを再起動する。
 ※これを行わないとAIエージェント用に出力したJson形式文字列がOllamaに自動パースされてエージェントは動作しません。
 
-#### 3. それぞれのスクリプトの実行\
+#### 3. それぞれのスクリプトの実行 (シンプルなAI、AIエージェント)
 (1) シンプルなローカルLLM
 ```
 cd simple_ai_agent
@@ -73,6 +76,11 @@ python simple_llm_ollama.py
 cd simple_ai_agent
 python ai_agent.py
 ```
+以下の機能に対応。
+- Webサーチによる最新の情報の取得
+- コードインタープリター機能による高度な計算
 
-#### 8. 任意の車画像を「入力画像ウィンドウ」にドラッグアンドドロップ
+#### 4. 会話と終了 (シンプルなAI、AIエージェント)
+(1) 「目的を入力」の入力エリアに任意のプロンプトを入力して「Enter」 -> 応答
+(2) 「目的を入力」の入力エリアに「exit」を入力して「Enter」 ｰ> 終了
 #### 9. 入力テキストボックスに任意の質問文を入力して「送信」ボタン押下
