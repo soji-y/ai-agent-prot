@@ -29,10 +29,10 @@ GPU：Geforce RTX4080 (GPUメモリ16GB以上)
 ## 事前インストール
 Ollama: https://ollama.com/download/windows
 AivisSpeech: https://aivis-project.com/
- -
- -
- -
- -
+ - 執事: [VC] ろてじん（長老ボイス), [style_id] 391794336 
+ - 秘書(男性): [VC] にせ, [style_id] 1937616896 
+ - 秘書(女性): [VC] るな, [style_id] 345585728 
+ - メイド:  [VC] 中２, [style_id] 604166016
 ## 使用方法
 #### 1. 本リポジトリをクローン
 #### 2. 必要なライブラリをインストール
