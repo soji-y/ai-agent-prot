@@ -226,7 +226,6 @@ class Agent(SimpleLLMOllama):
 # 外側の対話ループ（ユーザーとのやり取りはここで管理）
 # -----------------------
 if __name__ == "__main__":
-  # model_id = "gemma3:4b"
   model_id = "gpt-oss:20b"
   
   system_prompt = (
@@ -240,7 +239,7 @@ if __name__ == "__main__":
   from tools.code_calc import code_calc
   user_tools = {"web_search": web_search, "calc": code_calc}
 
-  ollama_host = 'http://192.168.1.100:11434'
+  ollama_host = "http://127.0.0.1:11434"
   agent = Agent(model_id, system_prompt, tools=user_tools, host=ollama_host)
 
   print("🤖 エージェント起動 — 何を頼みますか？（'exit'で終了）")
@@ -262,3 +261,4 @@ if __name__ == "__main__":
 # 最新の日本のニュースを教えてください。
 # 12345678901234567890 * 98765432109876543210 を計算してください。
 # > [正解] 1219326311370217952237463801111263526900
+
