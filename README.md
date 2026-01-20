@@ -28,7 +28,11 @@ GPU：Geforce RTX4080 (GPUメモリ16GB以上)
 
 ## 事前インストール
 Ollama: https://ollama.com/download/windows
-
+AivisSpeech: https://aivis-project.com/
+ -
+ -
+ -
+ -
 ## 使用方法
 #### 1. 本リポジトリをクローン
 #### 2. 必要なライブラリをインストール
