@@ -44,6 +44,11 @@ pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu12
 ```
 pip3 install -r requirements.txt
 ```
+(4) Playwright実行用ブラウザをインストール
+```
+playwright install
+```
+
 #### 3. それぞれのスクリプトの実行\
 (1) シンプルなローカルLLM
 ```
