@@ -30,15 +30,17 @@ GPU：Geforce RTX4080 (GPUメモリ16GB以上)
 #### 1. 本リポジトリをクローン
 #### 2. 必要なライブラリをインストール
 (1) venvやanaconda等で仮想環境を作成\
-(2) pipのアップグレード
 ```
-python.exe -m pip install --upgrade pip
+# anaconda
+conda create -n ai_agent python=3.11
 ```
-(3) pytorch等のインストール
+(2) pytorch等のインストール (CUDA環境に合わせたライブラリ)
+https://pytorch.org/
 ```
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+# CUDA12.8版
+pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu128
 ```
-(4) クローンしたフォルダに遷移し「requirements.txt」のライブラリをインストール
+(3) クローンしたフォルダに遷移し「requirements.txt」のライブラリをインストール
 ```
 pip3 install -r requirements.txt
 ```
