@@ -24,7 +24,7 @@ GPU：Geforce RTX4080 (GPUメモリ16GB以上)
 - Python 3.12.8
 
 ## 動作画面
-【多機能なAIエージェント】  
+【多機能なAIエージェントGUI】  
 !["フォーム画像"](https://github.com/soji-y/ai-agent-prot/blob/main/advanced_ai_agent/advanced_ai_agent.png)
 
 ## 事前インストール
