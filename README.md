@@ -29,12 +29,16 @@ GPU：Geforce RTX4080 (GPUメモリ16GB以上)
 ## 使用方法
 #### 1. 本リポジトリをクローン
 #### 2. 必要なライブラリをインストール
-(1) venv等の仮想環境を作成\
-(2) pytorch等のインストール
+(1) venvやanaconda等で仮想環境を作成\
+(2) pipのアップグレード
+```
+python.exe -m pip install --upgrade pip
+```
+(3) pytorch等のインストール
 ```
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 ```
-(3) クローンしたフォルダに遷移し「requirements.txt」のライブラリをインストール
+(4) クローンしたフォルダに遷移し「requirements.txt」のライブラリをインストール
 ```
 pip3 install -r requirements.txt
 ```
