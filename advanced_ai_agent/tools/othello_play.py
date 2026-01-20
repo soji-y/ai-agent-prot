@@ -6,22 +6,13 @@ import ollama
 from copy import deepcopy
 
 #==================== 定数設定 ====================
-# MODEL_NAME_1 = "Ayaka_v0.1.0"      # LLM先手 (X) に使うモデル
-MODEL_NAME_1 = "Iko_v0.1.0" # LLM後手 (O) に使うモデル
-# MODEL_NAME_1 = "gemma3:12b"      # LLM先手 (X) に使うモデル
-# MODEL_NAME_2 = "phi4" # LLM後手 (O) に使うモデル
-MODEL_NAME_2 = "deepseek-r1-ja-14b" # LLM後手 (O) に使うモデル
+MODEL_NAME_1 = "gemma3:4b" # LLM先手 (X) に使うモデル
+MODEL_NAME_2 = "gemma3:4b" # LLM後手 (O) に使うモデル
 
-# [Iko_v0.1.0]vs[deepseek-r1-ja-14b] [100/100局]
-# 総対局数: 100
-# 先手(黒) 勝利数: 38
-# 後手(白) 勝利数: 60
-# 引き分け: 2
-
-PLAY_MODE = 1                      # 0: 人vsLLM, 1: LLMvsLLM, 2: 人vs人
-HUMAN_FIRST = 0                    # 0: 人間が先手(X), 1: LLMが先手(X)
-GAME_MAX = 100                      # 連続対局の回数
-LLM_RETRY_LIMIT = 5                # ★修正点: LLMへの最大再試行回数を追加
+PLAY_MODE = 1              # 0: 人vsLLM, 1: LLMvsLLM, 2: 人vs人
+HUMAN_FIRST = 0            # 0: 人間が先手(X), 1: LLMが先手(X)
+GAME_MAX = 100             # 連続対局の回数
+LLM_RETRY_LIMIT = 5        # ★修正点: LLMへの最大再試行回数を追加
 
 #==================== オセロ本体クラス ====================
 DIRECTIONS = [(-1, -1), (-1, 0), (-1, 1),
@@ -55,9 +46,7 @@ DIRECTIONS = [(-1, -1), (-1, 0), (-1, 1),
 
 #   # マッチした全ての部分を空文字列に置換して削除
 #   cleaned_text = pattern.sub("", text).strip()
-
 #   return cleaned_text
-
 
 TOOL_NAME = "othello"
 TOOL_ALIAS = {"othello": "othello", "reversi": "othello"}
@@ -330,7 +319,7 @@ def main():
       move = None
       if PLAY_MODE == 2:
         player_name = '先手(黒)' if game.turn == "X" else '後手(白)'
-        print(f"\n{player_name} の番です（{'●' if game.turn == "X" else '○'}） 合法手: {[game.move_to_str(x, y) for x, y in legal_moves]}")
+        print(f"\n{player_name} の番です（{'●' if game.turn == 'X' else '○'}） 合法手: {[game.move_to_str(x, y) for x, y in legal_moves]}")
         while True:
           user_input = input("手を入力（例: D3）: ").strip().upper()
           try:
@@ -344,7 +333,7 @@ def main():
             print("形式が不正です。")
 
       elif (PLAY_MODE == 0 and game.turn == human_player):
-        print(f"\nあなたの番（{'●' if game.turn == "X" else '○'}） 合法手: {[game.move_to_str(x, y) for x, y in legal_moves]}")
+        print(f"\nあなたの番（{'●' if game.turn == 'X' else '○'}） 合法手: {[game.move_to_str(x, y) for x, y in legal_moves]}")
         while True:
           user_input = input("手を入力（例: D3）: ").strip().upper()
           try:
@@ -418,38 +407,38 @@ def main():
       # 最終盤面表示のためのメッセージを更新
       if PLAY_MODE == 1:
         model_name = MODEL_NAME_1 if turn_player == "X" else MODEL_NAME_2
-        last_turn_message = f"{head_message} 最終盤面: <<{'先手(黒)' if turn_player == "X" else '後手(白)'}[LLM({model_name})]着手後>>"
+        last_turn_message = f"{head_message} 最終盤面: <<{'先手(黒)' if turn_player == 'X' else '後手(白)'}[LLM({model_name})]着手後>>"
       elif PLAY_MODE == 0:
         if turn_player == human_player:
-          last_turn_message = f"{head_message} 最終盤面: <<{'先手(黒)' if turn_player == "X" else '後手(白)'}[プレイヤー1]着手後>>"
+          last_turn_message = f"{head_message} 最終盤面: <<{'先手(黒)' if turn_player == 'X' else '後手(白)'}[プレイヤー1]着手後>>"
         else:
-          last_turn_message = f"{head_message} 最終盤面: <<{'先手(黒)' if turn_player == "X" else '後手(白)'}[LLM({MODEL_NAME_1})]着手後>>"
+          last_turn_message = f"{head_message} 最終盤面: <<{'先手(黒)' if turn_player == 'X' else '後手(白)'}[LLM({MODEL_NAME_1})]着手後>>"
       else:
-        last_turn_message = f"{head_message} 最終盤面: <<{'先手(黒)' if turn_player == "X" else '後手(白)'}[プレイヤー{'1' if turn_player == "X" else '2'}]着手後>>"
+        last_turn_message = f"{head_message} 最終盤面: <<{'先手(黒)' if turn_player == 'X' else '後手(白)'}[プレイヤー{'1' if turn_player == 'X' else '2'}]着手後>>"
 
       # ★修正箇所: 各着手後の盤面表示を元に戻す
       if not game_ended_by_error:
         if total_stones < 64:
           if PLAY_MODE == 1:
-            model_name = MODEL_NAME_1 if turn_player == "X" else MODEL_NAME_2
-            print(f"\n{head_message} 現在の盤面: <<{'先手(黒)' if turn_player == "X" else '後手(白)'}[LLM({model_name})]着手後>>")
+            model_name = MODEL_NAME_1 if turn_player == 'X' else MODEL_NAME_2
+            print(f"\n{head_message} 現在の盤面: <<{'先手(黒)' if turn_player == 'X' else '後手(白)'}[LLM({model_name})]着手後>>")
           elif PLAY_MODE == 0:
             if turn_player == human_player:
-              print(f"\n{head_message} 現在の盤面: <<{'先手(黒)' if turn_player == "X" else '後手(白)'}[プレイヤー1]着手後>>")
+              print(f"\n{head_message} 現在の盤面: <<{'先手(黒)' if turn_player == 'X' else '後手(白)'}[プレイヤー1]着手後>>")
             else:
-              print(f"\n{head_message} 現在の盤面: <<{'先手(黒)' if turn_player == "X" else '後手(白)'}[LLM({MODEL_NAME_1})]着手後>>")
+              print(f"\n{head_message} 現在の盤面: <<{'先手(黒)' if turn_player == 'X' else '後手(白)'}[LLM({MODEL_NAME_1})]着手後>>")
           else:
-            print(f"\n{head_message} 現在の盤面: <<{'先手(黒)' if turn_player == "X" else '後手(白)'}[プレイヤー{'1' if turn_player == "X" else '2'}]着手後>>")
+            print(f"\n{head_message} 現在の盤面: <<{'先手(黒)' if turn_player == 'X' else '後手(白)'}[プレイヤー{'1' if turn_player == 'X' else '2'}]着手後>>")
           game.print_board()
       
-      # game.turn = "O" if game.turn == "X" else "X"
+      # game.turn = "O" if game.turn == 'X' else 'X'
 
     if game_ended_by_error:
         continue
 
     # 64マス埋まっていない かつ 両者パスで終了した場合のみメッセージ表示
     if total_stones < 64 and skip_count >= 2:
-      player_name = '先手(黒)' if game.turn == "X" else '後手(白)' # game.turnは最後の番をパスした側
+      player_name = '先手(黒)' if game.turn == 'X' else '後手(白)' # game.turnは最後の番をパスした側
       print(f"{player_name} に合法手がありません。パスします。")
       print(f"両者に合法手がないため、対局終了。")
 
@@ -471,8 +460,8 @@ def main():
 
   print("\n================== 対局結果まとめ ==================")
   print(f"総対局数: {GAME_MAX}")
-  print(f"先手(黒) 勝利数: {total_results["X"]}")
-  print(f"後手(白) 勝利数: {total_results["O"]}")
+  print(f"先手(黒) 勝利数: {total_results['X']}")
+  print(f"後手(白) 勝利数: {total_results['O']}")
   print(f"引き分け: {total_results['draw']}")
   if GAME_MAX > 0:
       x_win_rate = total_results["X"] / GAME_MAX * 100
