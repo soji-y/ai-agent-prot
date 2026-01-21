@@ -176,16 +176,16 @@ class Agent(SimpleLLMOllama):
       # ログ出力
       print(f"\n--- STEP {step+1} ---")
       print(f"🧠 Thought: {thought}")
-      # print(f"🔎 LLM が提案した action: {action_hint}")
-      # print(f"🔧 action_input: {action_input}")
-
       if not thought:
         continue
-              
+
       # ルーティング（意図解析・検証）
       routed = self.route_action(parsed)
       typ = routed.get("type")
       inp = routed.get("input")
+
+      print(f"🔎 LLM が提案した action: {typ}")
+      print(f"🔧 action_input: {inp}")
 
       # 実行フェーズ
       if typ == "respond":
@@ -264,5 +264,6 @@ if __name__ == "__main__":
 # 最新の日本のニュースを教えてください。
 # 12345678901234567890 * 98765432109876543210 を計算してください。
 # > [正解] 1219326311370217952237463801111263526900
+
 
 
